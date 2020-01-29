@@ -132,11 +132,11 @@ func createServer(spec *ClusterSpec) (string, error) {
 
 	networkingConfig := &network.NetworkingConfig{
 		EndpointsConfig: map[string]*network.EndpointSettings{
-			k3dNetworkName(spec.ClusterName): {
-				Aliases: []string{containerName},
-			},
+			"host": {},
 		},
 	}
+
+	hostConfig.NetworkMode = "host"
 
 	config := &container.Config{
 		Hostname:     containerName,
